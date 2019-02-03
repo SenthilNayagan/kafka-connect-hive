@@ -4,6 +4,8 @@ This connector extracts data from Apache Hive table into Kafka. Based on the giv
 
 # Configuration
 
+Refer [here](https://docs.confluent.io/current/connect/references/allconfigs.html#common-worker-configs) for common Worker Configs.
+ 
 ```properties
 # Set these required Kafka values
 kafka.topic=my-topic
@@ -13,7 +15,7 @@ kafka.client.id=my-id
 hive.connection.url=https://connect-to-hive-jdbc
 hive.user=guest
 hive.password=pass
-hive.query=select * from db.table where col1 > 20
+hive.query=SELECT * FROM db.table WHERE col1 > 20
 ``` 
 
 # Development
