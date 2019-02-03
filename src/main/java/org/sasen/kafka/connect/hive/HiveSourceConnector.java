@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * HiveSourceConnector is a Kafka Connect Connector implementation that extracts data from Apache
@@ -28,6 +29,7 @@ public class HiveSourceConnector extends SourceConnector {
 
   @Override
   public void start(Map<String, String> properties) throws ConnectException {
+    log.info("Starting Hive Source Connector");
     try {
       configProperties = properties;
     } catch (ConfigException e) {
@@ -50,8 +52,6 @@ public class HiveSourceConnector extends SourceConnector {
   @Override
   public void stop() {}
 
-    @Override
-    public ConfigDef config() {
-
-    }
+  @Override
+  public ConfigDef config() {}
 }

@@ -15,3 +15,11 @@ hive.user=guest
 hive.password=pass
 hive.query=select * from db.table where col1 > 20
 ``` 
+
+# Development
+To build a development version you'll need a recent and stable version of Kafka. You can build kafka-connect-hive with Maven.
+
+```aidl
+mvn clean && mvn install -DskipTests -Dfile.encoding=UTF-8
+cp target/kafka-connect-hive-1.0-SNAPSHOT.jar /path to confluent director/share/java/kafka-connect-hive/
+```
