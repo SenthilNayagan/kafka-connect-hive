@@ -21,7 +21,7 @@ public class HiveSourceConnectorConfig extends AbstractConfig {
   private static final String HIVE_CONNECTION_URL_DISPLAY = "Hive JDBC URL";
 
   public static final String HIVE_USER_CONFIG = "hive.user";
-  private static final String HIVE_USER_DOC = "Hive User.";
+  private static final String HIVE_USER_DOC = "Hive User ID.";
   private static final String HIVE_USER_DISPLAY = "Hive User";
 
   public static final String HIVE_PASSWORD_CONFIG = "hive.password";
