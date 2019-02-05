@@ -58,7 +58,7 @@ public class HiveSourceConnector extends SourceConnector {
       config = new HiveSourceConnectorConfig(configProperties);
     } catch (ConfigException e) {
       throw new ConnectException(
-          "Couldn't start HiveSourceConnector due to configuration error", e);
+          "Couldn't start HiveSourceConnector due to configuration error: ", e);
     }
 
 //    hiveConnectionURL = config.getString(HiveSourceConnectorConfig.HIVE_CONNECTION_URL_CONFIG);

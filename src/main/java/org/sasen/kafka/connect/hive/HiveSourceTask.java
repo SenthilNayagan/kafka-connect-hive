@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.sasen.kafka.connect.hive.util.Version;
 
@@ -57,12 +58,20 @@ public class HiveSourceTask extends SourceTask {
 
   @Override
   public List<SourceRecord> poll() throws InterruptedException {
+    log.trace("{} Polling for new data");
+    ArrayList<SourceRecord> records = new ArrayList<>();
+    try {
 
+    } catch(Exception e) {
+
+    }
+
+    return records;
   }
 
   /**
    * Teardown function of the connector.
    */
   @Override
-  public void stop() {}
+  public void stop() { //TODO Close SparkSession here}
 }
