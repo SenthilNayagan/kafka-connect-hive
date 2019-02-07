@@ -21,10 +21,10 @@ import org.sasen.kafka.connect.hive.util.Version;
  * Hive table into Kafka.
  */
 public class HiveSourceConnector extends SourceConnector {
-  private static final Logger log = LoggerFactory.getLogger(HiveSourceConnector.class);
+    private static final Logger log = LoggerFactory.getLogger(HiveSourceConnector.class);
 
-  private Map<String, String> configProperties;
-  private HiveSourceConnectorConfig config;
+    private Map<String, String> configProperties;
+    private HiveSourceConnectorConfig config;
 
 //  private String hiveConnectionURL = "";
 //  private String hiveUser = "";
@@ -34,32 +34,32 @@ public class HiveSourceConnector extends SourceConnector {
 //  private String kafkaTopic = "";
 //  private String kafkaClientID = "";
 
-  /**
-   * Returns the version of the connector.
-   *
-   * @return
-   */
-  @Override
-  public String version() {
-    return Version.getVersion();
-  }
-
-  /**
-   * Takes configuration from connector.properties and pass them to config class.
-   *
-   * @param properties
-   * @throws ConnectException
-   */
-  @Override
-  public void start(Map<String, String> properties) throws ConnectException {
-    log.info("Starting Hive Source Connector");
-    try {
-      configProperties = properties;
-      config = new HiveSourceConnectorConfig(configProperties);
-    } catch (ConfigException e) {
-      throw new ConnectException(
-          "Couldn't start HiveSourceConnector due to configuration error", e);
+    /**
+     * Returns the version of the connector.
+     *
+     * @return
+     */
+    @Override
+    public String version() {
+        return Version.getVersion();
     }
+
+    /**
+     * Takes configuration from connector.properties and pass them to config class.
+     *
+     * @param properties
+     * @throws ConnectException
+     */
+    @Override
+    public void start(Map<String, String> properties) throws ConnectException {
+        log.info("Starting Hive Source Connector");
+        try {
+            configProperties = properties;
+            config = new HiveSourceConnectorConfig(configProperties);
+        } catch (ConfigException e) {
+            throw new ConnectException(
+                    "Couldn't start HiveSourceConnector due to configuration error: ", e);
+        }
 
 //    hiveConnectionURL = config.getString(HiveSourceConnectorConfig.HIVE_CONNECTION_URL_CONFIG);
 //    hiveUser = config.getString(HiveSourceConnectorConfig.HIVE_USER_CONFIG);
@@ -68,32 +68,33 @@ public class HiveSourceConnector extends SourceConnector {
 //
 //    kafkaTopic = config.getString(HiveSourceConnectorConfig.KAFKA_TOPIC_CONFIG);
 //    kafkaClientID = config.getString(HiveSourceConnectorConfig.KAFKA_CLIENT_ID_CONFIG);
-  }
-
-  @Override
-  public Class<? extends Task> taskClass() {
-    return HiveSourceTask.class;
-  }
-
-  @Override
-  public List<Map<String, String>> taskConfigs(int maxTasks) {
-    log.info("Setting task configurations for {} workers.", maxTasks);
-    List<Map<String, String>> taskConfigs = new ArrayList<>(maxTasks);
-    Map<String, String> taskProperties = new HashMap<>(configProperties);
-    for (int i = 0; i < maxTasks; ++i) {
-      taskConfigs.add(taskProperties);
     }
-    return taskConfigs;
-  }
 
-  /**
-   * Teardown function of the connector.
-   */
-  @Override
-  public void stop() {}
+    @Override
+    public Class<? extends Task> taskClass() {
+        return HiveSourceTask.class;
+    }
 
-  @Override
-  public ConfigDef config() {
-    return HiveSourceConnectorConfig.CONFIG_DEF;
-  }
+    @Override
+    public List<Map<String, String>> taskConfigs(int maxTasks) {
+        log.info("Setting task configurations for {} workers.", maxTasks);
+        List<Map<String, String>> taskConfigs = new ArrayList<>(maxTasks);
+        Map<String, String> taskProperties = new HashMap<>(configProperties);
+        for (int i = 0; i < maxTasks; ++i) {
+            taskConfigs.add(taskProperties);
+        }
+        return taskConfigs;
+    }
+
+    /**
+     * Teardown function of the connector.
+     */
+    @Override
+    public void stop() {
+    }
+
+    @Override
+    public ConfigDef config() {
+        return HiveSourceConnectorConfig.CONFIG_DEF;
+    }
 }
