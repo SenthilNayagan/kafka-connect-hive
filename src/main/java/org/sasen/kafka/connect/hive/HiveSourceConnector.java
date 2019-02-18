@@ -52,7 +52,7 @@ public class HiveSourceConnector extends SourceConnector {
      */
     @Override
     public void start(Map<String, String> properties) throws ConnectException {
-        log.info("Starting Hive Source Connector");
+        log.info("Starting Hive Source Connector...");
         try {
             configProperties = properties;
             config = new HiveSourceConnectorConfig(configProperties);
